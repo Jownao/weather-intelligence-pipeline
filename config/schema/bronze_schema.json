@@ -1,0 +1,74 @@
+{
+  "fields": [
+    {
+      "name": "extraction_timestamp",
+      "type": "TIMESTAMP",
+      "mode": "REQUIRED",
+      "description": "When data was extracted from API"
+    },
+    {
+      "name": "region_name",
+      "type": "STRING",
+      "mode": "REQUIRED",
+      "description": "Region name (e.g., São Paulo)"
+    },
+    {
+      "name": "latitude",
+      "type": "FLOAT64",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "longitude",
+      "type": "FLOAT64",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "date",
+      "type": "DATE",
+      "mode": "REQUIRED",
+      "description": "Date of weather observation"
+    },
+    {
+      "name": "temperature_2m",
+      "type": "FLOAT64",
+      "mode": "NULLABLE",
+      "description": "Temperature at 2 meters (°C)"
+    },
+    {
+      "name": "relative_humidity_2m",
+      "type": "INT64",
+      "mode": "NULLABLE",
+      "description": "Relative humidity at 2 meters (%)"
+    },
+    {
+      "name": "precipitation_sum",
+      "type": "FLOAT64",
+      "mode": "NULLABLE",
+      "description": "Total precipitation (mm)"
+    },
+    {
+      "name": "windspeed_10m",
+      "type": "FLOAT64",
+      "mode": "NULLABLE",
+      "description": "Wind speed at 10 meters (km/h)"
+    },
+    {
+      "name": "cloudcover",
+      "type": "INT64",
+      "mode": "NULLABLE",
+      "description": "Cloud cover (%)"
+    },
+    {
+      "name": "raw_response",
+      "type": "STRING",
+      "mode": "NULLABLE",
+      "description": "Full API response as JSON string"
+    },
+    {
+      "name": "load_timestamp",
+      "type": "TIMESTAMP",
+      "mode": "REQUIRED",
+      "description": "When data was loaded to BigQuery"
+    }
+  ]
+}

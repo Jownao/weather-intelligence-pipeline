@@ -1,0 +1,66 @@
+# Regions monitored by Weather Intelligence Platform
+# Each region has coordinates for Open-Meteo API calls
+
+regions:
+  - name: "São Paulo"
+    latitude: -23.5505
+    longitude: -46.6333
+    country: "Brazil"
+    timezone: "America/Sao_Paulo"
+    region_code: "SP"
+    user_segment: "metropolitan"  # Used for SaaS behavioral correlation
+
+  - name: "Rio de Janeiro"
+    latitude: -22.9068
+    longitude: -43.1729
+    country: "Brazil"
+    timezone: "America/Sao_Paulo"
+    region_code: "RJ"
+    user_segment: "metropolitan"
+
+  - name: "Belo Horizonte"
+    latitude: -19.9167
+    longitude: -43.9345
+    country: "Brazil"
+    timezone: "America/Sao_Paulo"
+    region_code: "MG"
+    user_segment: "metropolitan"
+
+  - name: "Salvador"
+    latitude: -12.9714
+    longitude: -38.5014
+    country: "Brazil"
+    timezone: "America/Bahia"
+    region_code: "BA"
+    user_segment: "coastal"
+
+  - name: "Fortaleza"
+    latitude: -3.7319
+    longitude: -38.5267
+    country: "Brazil"
+    timezone: "America/Fortaleza"
+    region_code: "CE"
+    user_segment: "coastal"
+
+# SaaS vertical configurations (examples of how to use this data)
+saas_verticals:
+  - name: "delivery"
+    description: "Food delivery app - traffic affected by rain/temperature"
+    key_metrics:
+      - "precipitation_mm"
+      - "temperature_2m"
+      - "windspeed_10m"
+
+  - name: "fitness"
+    description: "Fitness/outdoor activities - demand varies with weather"
+    key_metrics:
+      - "temperature_2m"
+      - "cloudcover"
+      - "uv_index"
+
+  - name: "agronegocio"
+    description: "Agricultural SaaS - crop planning based on weather"
+    key_metrics:
+      - "precipitation_mm"
+      - "temperature_2m"
+      - "soil_moisture_index"

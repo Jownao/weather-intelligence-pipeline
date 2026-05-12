@@ -1,0 +1,74 @@
+{
+  "fields": [
+    {
+      "name": "weather_id",
+      "type": "STRING",
+      "mode": "REQUIRED",
+      "description": "Unique identifier for weather record"
+    },
+    {
+      "name": "region_name",
+      "type": "STRING",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "region_code",
+      "type": "STRING",
+      "mode": "REQUIRED",
+      "description": "2-letter state code (SP, RJ, etc)"
+    },
+    {
+      "name": "date",
+      "type": "DATE",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "temperature_celsius",
+      "type": "FLOAT64",
+      "mode": "REQUIRED",
+      "description": "Cleaned temperature"
+    },
+    {
+      "name": "humidity_percentage",
+      "type": "FLOAT64",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "precipitation_mm",
+      "type": "FLOAT64",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "wind_speed_kmh",
+      "type": "FLOAT64",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "cloud_coverage_percentage",
+      "type": "INT64",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "weather_condition",
+      "type": "STRING",
+      "mode": "NULLABLE",
+      "description": "Categorized condition (sunny, cloudy, rainy, etc)"
+    },
+    {
+      "name": "data_quality_score",
+      "type": "FLOAT64",
+      "mode": "REQUIRED",
+      "description": "Data quality check score (0-100)"
+    },
+    {
+      "name": "is_valid",
+      "type": "BOOLEAN",
+      "mode": "REQUIRED"
+    },
+    {
+      "name": "transformation_timestamp",
+      "type": "TIMESTAMP",
+      "mode": "REQUIRED"
+    }
+  ]
+}
