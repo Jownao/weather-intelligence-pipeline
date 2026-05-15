@@ -551,3 +551,24 @@ Desenvolvido como projeto de portfólio para demonstrar conhecimento em:
 ---
 
 **⭐ Dúvidas ou sugestões?** Abra uma issue ou discussion!
+
+## 🧭 Instalação: local vs Docker
+
+- Para desenvolvimento local leve (scripts, transformer, testes): use o `requirements.txt` (arquivo leve, sem Airflow/GCP).
+- Para rodar o stack completo (Airflow + BigQuery providers) utilize Docker — o container usa `requirements-docker.txt`.
+
+Comandos recomendados:
+
+```bash
+# Instalação local (venv)
+python -m venv .venv
+source .venv/bin/activate   # macOS / Linux
+.venv\Scripts\activate     # Windows Powershell
+pip install -r requirements.txt
+
+# Build e subir stack via Docker (recomendado para Airflow)
+make docker-build
+make docker-up
+```
+
+Se ocorrerem erros ao instalar pacotes pesados no Windows (por exemplo `apache-airflow` ou `google-cloud-*`), prefira a opção Docker.

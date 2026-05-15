@@ -80,7 +80,15 @@ def transform_weather_data(**context):
     df_clean, metrics = WeatherTransformer.clean_weather_data(df)
     logger.info(f"Transformation metrics: {metrics}")
 
-    context["task_instance"].xcom_push(key="transformed_data", value=df_clean.to_dict())
+    # XCom needs JSON-serializable data, so normalize datetime-like fields first.
+    df_payload = df_clean.copy()
+    for column in ["date", "extraction_timestamp", "load_timestamp"]:
+        if column in df_payload.columns:
+            df_payload[column] = df_payload[column].astype(str)
+
+    context["task_instance"].xcom_push(
+        key="transformed_data", value=df_payload.to_dict(orient="records")
+    )
 
 
 def load_to_bigquery(**context):
@@ -103,6 +111,26 @@ def load_to_bigquery(**context):
         return
 
     df = DataFrame(data_dict)
+
+    # Bronze schema is narrower than the transformed dataframe.
+    bronze_columns = [
+        "extraction_timestamp",
+        "region_name",
+        "latitude",
+        "longitude",
+        "date",
+        "temperature_2m",
+        "relative_humidity_2m",
+        "precipitation_sum",
+        "windspeed_10m",
+        "cloudcover",
+        "raw_response",
+        "load_timestamp",
+    ]
+    for column in bronze_columns:
+        if column not in df.columns:
+            df[column] = None
+    df = df[bronze_columns]
 
     # Initialize loader
     loader = BigQueryLoader()

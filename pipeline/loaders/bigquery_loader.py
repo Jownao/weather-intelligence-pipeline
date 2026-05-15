@@ -22,7 +22,7 @@ class BigQueryLoader:
         dataset_bronze: Optional[str] = None,
         dataset_silver: Optional[str] = None,
         dataset_gold: Optional[str] = None,
-        location: str = "us-east1",
+        location: Optional[str] = None,
     ):
         """Initialize BigQuery loader.
 
@@ -37,13 +37,13 @@ class BigQueryLoader:
         self.dataset_bronze = dataset_bronze or os.getenv("GCP_DATASET_BRONZE", "weather_bronze")
         self.dataset_silver = dataset_silver or os.getenv("GCP_DATASET_SILVER", "weather_silver")
         self.dataset_gold = dataset_gold or os.getenv("GCP_DATASET_GOLD", "weather_gold")
-        self.location = location
+        self.location = location or os.getenv("GCP_REGION", "US")
 
-        self.client = bigquery.Client(project=self.project_id, location=location)
+        self.client = bigquery.Client(project=self.project_id, location=self.location)
 
         logger.info(
             f"BigQueryLoader initialized: project={self.project_id}, "
-            f"location={location}, bronze={self.dataset_bronze}"
+            f"location={self.location}, bronze={self.dataset_bronze}"
         )
 
     def load_to_bronze(
@@ -128,16 +128,32 @@ class BigQueryLoader:
             logger.warning(f"Skipping load: empty DataFrame for {dataset}.{table_name}")
             return "EMPTY"
 
+        # Make sure the target dataset exists before attempting the load.
+        self.create_dataset_if_not_exists(dataset)
+
         table_id = f"{self.project_id}.{dataset}.{table_name}"
 
         try:
-            # Convert date columns to proper format
+            # Normalize only known temporal fields to avoid converting string columns
+            # (e.g. raw_response) into datetime by mistake.
+            date_columns = {"date", "metric_date"}
+            timestamp_columns = {
+                "extraction_timestamp",
+                "load_timestamp",
+                "transformation_timestamp",
+                "aggregation_timestamp",
+            }
+
             for col in df.columns:
-                if df[col].dtype == "object":
-                    try:
-                        df[col] = pd.to_datetime(df[col])
-                    except (ValueError, TypeError):
-                        pass
+                if col in date_columns:
+                    df[col] = pd.to_datetime(df[col], errors="coerce").dt.date
+                elif col in timestamp_columns:
+                    df[col] = pd.to_datetime(df[col], errors="coerce")
+
+            if "raw_response" in df.columns:
+                df["raw_response"] = df["raw_response"].where(
+                    df["raw_response"].isna(), df["raw_response"].astype(str)
+                )
 
             job_config = LoadJobConfig(
                 write_disposition=(
