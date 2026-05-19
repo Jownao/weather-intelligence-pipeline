@@ -67,3 +67,5 @@ data/
 
 # Logs
 *.log
+
+scripts/

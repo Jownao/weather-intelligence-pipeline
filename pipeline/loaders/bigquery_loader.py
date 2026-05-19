@@ -155,6 +155,13 @@ class BigQueryLoader:
                     df["raw_response"].isna(), df["raw_response"].astype(str)
                 )
 
+            # Validate dataframe against schema if available
+            try:
+                self.validate_df_schema(df, dataset, table_name)
+            except ValueError as e:
+                logger.error(f"Schema validation failed for {table_id}: {e}")
+                raise
+
             job_config = LoadJobConfig(
                 write_disposition=(
                     "WRITE_APPEND" if if_exists == "append" else "WRITE_TRUNCATE"
@@ -242,3 +249,60 @@ class BigQueryLoader:
         except Exception as e:
             logger.error(f"Error creating table from schema: {e}")
             raise
+
+    def validate_df_schema(self, df: pd.DataFrame, dataset: str, table_name: str) -> None:
+        """Validate a DataFrame against the JSON schema in `config/schema`.
+
+        This performs basic checks:
+        - required fields present
+        - attempts to coerce types for DATE/TIMESTAMP/NUMERIC fields
+
+        Raises:
+            ValueError: if required columns are missing or coercion fails
+        """
+        # Map dataset to schema filename
+        base = os.path.join(os.getcwd(), "config", "schema")
+        schema_file = None
+        ds = dataset.lower()
+        if "bronze" in ds:
+            schema_file = os.path.join(base, "bronze_schema.json")
+        elif "silver" in ds:
+            schema_file = os.path.join(base, "silver_schema.json")
+        elif "gold" in ds:
+            schema_file = os.path.join(base, "gold_schema.json")
+
+        if not schema_file or not os.path.exists(schema_file):
+            logger.debug(f"No schema file found for dataset {dataset}, skipping validation")
+            return
+
+        with open(schema_file, "r", encoding="utf-8") as f:
+            schema = json.load(f)
+
+        required_fields = [f.get("name") for f in schema.get("fields", []) if f.get("mode") == "REQUIRED"]
+
+        missing = [c for c in required_fields if c not in df.columns]
+        if missing:
+            raise ValueError(f"Missing required columns: {missing}")
+
+        # Try to coerce types for common BigQuery types
+        for field in schema.get("fields", []):
+            name = field.get("name")
+            ftype = field.get("type", "STRING")
+            if name not in df.columns:
+                continue
+            try:
+                if ftype in ("TIMESTAMP",):
+                    df[name] = pd.to_datetime(df[name], errors="coerce")
+                elif ftype in ("DATE",):
+                    df[name] = pd.to_datetime(df[name], errors="coerce").dt.date
+                elif ftype in ("FLOAT64", "NUMERIC", "FLOAT"):
+                    df[name] = pd.to_numeric(df[name], errors="coerce")
+                elif ftype in ("INT64", "INTEGER"):
+                    df[name] = pd.to_numeric(df[name], errors="coerce").astype("Int64")
+                else:
+                    # keep as string/object
+                    df[name] = df[name].astype(object)
+            except Exception as e:
+                raise ValueError(f"Failed to coerce column {name} to {ftype}: {e}")
+
+        logger.info(f"Schema validation passed for {dataset}.{table_name}")
