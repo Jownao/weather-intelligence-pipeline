@@ -4,4 +4,6 @@ imageio
 nbformat
 mkdocs
 mkdocs-material
+google-cloud-bigquery
+
 

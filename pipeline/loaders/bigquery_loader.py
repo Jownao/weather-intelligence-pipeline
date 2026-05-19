@@ -39,7 +39,8 @@ class BigQueryLoader:
         self.dataset_gold = dataset_gold or os.getenv("GCP_DATASET_GOLD", "weather_gold")
         self.location = location or os.getenv("GCP_REGION", "US")
 
-        self.client = bigquery.Client(project=self.project_id, location=self.location)
+        # Create BigQuery client lazily to avoid requiring credentials during tests
+        self.client = None
 
         logger.info(
             f"BigQueryLoader initialized: project={self.project_id}, "
@@ -170,7 +171,8 @@ class BigQueryLoader:
             )
 
             logger.info(f"Loading {len(df)} rows to {table_id}")
-            load_job = self.client.load_table_from_dataframe(df, table_id, job_config=job_config)
+            client = self._get_client()
+            load_job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
 
             load_job.result()  # Wait for job to complete
 
@@ -193,12 +195,14 @@ class BigQueryLoader:
         dataset_id = f"{self.project_id}.{dataset}"
 
         try:
-            self.client.get_dataset(dataset_id)
+            client = self._get_client()
+            client.get_dataset(dataset_id)
             logger.info(f"Dataset {dataset_id} already exists")
         except Exception:
             dataset_obj = bigquery.Dataset(dataset_id)
             dataset_obj.location = self.location
-            self.client.create_dataset(dataset_obj)
+            client = self._get_client()
+            client.create_dataset(dataset_obj)
             logger.info(f"Created dataset {dataset_id}")
 
     def create_table_from_schema(
@@ -229,12 +233,13 @@ class BigQueryLoader:
 
             # Check if table exists
             try:
-                self.client.get_table(table_id)
+                client = self._get_client()
+                client.get_table(table_id)
                 if if_exists == "ignore":
                     logger.info(f"Table {table_id} already exists, skipping")
                     return
                 else:
-                    self.client.delete_table(table_id)
+                    client.delete_table(table_id)
                     logger.info(f"Deleted existing table {table_id}")
             except Exception:
                 pass
@@ -243,12 +248,19 @@ class BigQueryLoader:
             table.time_partitioning = bigquery.TimePartitioning(
                 type_=bigquery.TimePartitioningType.DAY, field="date"
             )
-            self.client.create_table(table)
+            client = self._get_client()
+            client.create_table(table)
             logger.info(f"Created table {table_id}")
 
         except Exception as e:
             logger.error(f"Error creating table from schema: {e}")
             raise
+
+    def _get_client(self):
+        """Return a BigQuery client, creating it if necessary."""
+        if self.client is None:
+            self.client = bigquery.Client(project=self.project_id, location=self.location)
+        return self.client
 
     def validate_df_schema(self, df: pd.DataFrame, dataset: str, table_name: str) -> None:
         """Validate a DataFrame against the JSON schema in `config/schema`.
