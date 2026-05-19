@@ -1,0 +1,6 @@
+site_name: Weather Intelligence Pipeline
+nav:
+  - Home: docs/index.md
+  - Architecture: docs/architecture.md
+theme:
+  name: material

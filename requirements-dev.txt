@@ -2,3 +2,6 @@ pytest
 matplotlib
 imageio
 nbformat
+mkdocs
+mkdocs-material
+
