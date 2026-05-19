@@ -1,6 +1,7 @@
 site_name: Weather Intelligence Pipeline
 nav:
-  - Home: docs/index.md
-  - Architecture: docs/architecture.md
+  - Home: index.md
+  - Architecture: architecture.md
+  - Setup & Serve Locally: setup.md
 theme:
   name: material
