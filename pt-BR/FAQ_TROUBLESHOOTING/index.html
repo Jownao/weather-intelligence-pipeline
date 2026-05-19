@@ -1,0 +1,868 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>FAQ & Troubleshooting - Weather Intelligence Pipeline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#faq-troubleshooting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Weather Intelligence Pipeline" class="md-header__button md-logo" aria-label="Weather Intelligence Pipeline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Weather Intelligence Pipeline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FAQ &amp; Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Weather Intelligence Pipeline" class="md-nav__button md-logo" aria-label="Weather Intelligence Pipeline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Weather Intelligence Pipeline
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Serve Locally
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#p-quantas-vezes-por-dia-a-pipeline-roda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Quantas vezes por dia a pipeline roda?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-quantos-dias-de-historico-a-pipeline-coleta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Quantos dias de histórico a pipeline coleta?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-por-que-os-dados-aparecem-em-3-tabelas-bronzesilvergold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Por que os dados aparecem em 3 tabelas (Bronze/Silver/Gold)?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-posso-rodar-a-pipeline-manualmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Posso rodar a pipeline manualmente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-como-adiciono-uma-nova-regiao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Como adiciono uma nova região?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-onde-vejo-erros-se-alguma-coisa-der-errado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Onde vejo erros se alguma coisa der errado?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-posso-mudar-o-horario-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Posso mudar o horário de execução?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-como-limpo-dados-ou-deleto-uma-execucao-errada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P: Como limpo dados ou deleto uma execução errada?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-no-module-named-googlecloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro: "No module named 'google.cloud'"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-permission-denied-ao-carregar-em-bigquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro: "Permission denied" ao carregar em BigQuery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-dataset-not-found-no-bigquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro: "Dataset not found" no BigQuery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-provided-schema-does-not-match-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro: "Provided Schema does not match Table"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dag-nao-aparece-no-airflow-apos-editar-arquivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAG não aparece no Airflow após editar arquivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-failed-to-get-dag-weather_etl_dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro: "FAILED to get DAG 'weather_etl_dag'"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-roda-mas-nao-carrega-dados-em-bigquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline roda mas não carrega dados em BigQuery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-pipeline-esta-muito-lenta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance: Pipeline está muito lenta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-de-saude-diaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checklist de Saúde Diária
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="faq-troubleshooting">FAQ &amp; Troubleshooting</h1>
+<p>Respostas para dúvidas comuns e soluções de problemas.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="p-quantas-vezes-por-dia-a-pipeline-roda">P: Quantas vezes por dia a pipeline roda?</h3>
+<p><strong>R</strong>: Por padrão, <strong>1 vez por dia às 02:00 UTC</strong> (conforme <code>schedule_interval</code> na DAG).</p>
+<p>Para mudar frequência, edite <code>dags/weather_etl_dag.py</code>:</p>
+<pre><code class="language-python">schedule_interval=&quot;0 2 * * *&quot;  # Diário às 02:00 UTC
+# Mude para:
+schedule_interval=&quot;0 */4 * * *&quot;  # A cada 4 horas
+</code></pre>
+<p>Depois reinicie:</p>
+<pre><code class="language-bash">docker-compose restart airflow-scheduler
+</code></pre>
+<h3 id="p-quantos-dias-de-historico-a-pipeline-coleta">P: Quantos dias de histórico a pipeline coleta?</h3>
+<p><strong>R</strong>: <strong>Últimos 30 dias</strong> (configurado em <code>OpenMeteoClient.get_last_30_days()</code>).</p>
+<p>Se quiser mais, edite <code>pipeline/extractors/open_meteo.py</code>:</p>
+<pre><code class="language-python">def get_last_30_days(self, latitude, longitude):
+    # Mude o número 30 para, ex, 90 (para últimos 90 dias)
+    start_date = (date.today() - timedelta(days=30)).isoformat()
+    ...
+</code></pre>
+<h3 id="p-por-que-os-dados-aparecem-em-3-tabelas-bronzesilvergold">P: Por que os dados aparecem em 3 tabelas (Bronze/Silver/Gold)?</h3>
+<p><strong>R</strong>: Padrão Medallion (usado em Databricks/Delta Lake):</p>
+<ul>
+<li><strong>Bronze</strong>: Raw data (imutável, backup histórico)</li>
+<li><strong>Silver</strong>: Limpo, validado (dados confiáveis)</li>
+<li><strong>Gold</strong>: Agregado, pronto para BI (métricas, dashboards)</li>
+</ul>
+<p>Assim, se houver erro em produção, você pode "voltar" aos dados brutos (Bronze) e reprocessar.</p>
+<h3 id="p-posso-rodar-a-pipeline-manualmente">P: Posso rodar a pipeline manualmente?</h3>
+<p><strong>R</strong>: Sim, via Airflow UI:</p>
+<ol>
+<li>Abra <code>http://localhost:8080</code></li>
+<li>Procure DAG <code>weather_etl_daily</code></li>
+<li>Botão "Trigger DAG" (ou ícone play)</li>
+<li>Executa imediatamente</li>
+</ol>
+<p>Ou via CLI:</p>
+<pre><code class="language-bash">docker-compose exec airflow-webserver airflow dags trigger weather_etl_daily
+</code></pre>
+<h3 id="p-como-adiciono-uma-nova-regiao">P: Como adiciono uma nova região?</h3>
+<p><strong>R</strong>: Edit <code>config/regions.yaml</code> e adicione entrada:</p>
+<pre><code class="language-yaml">regions:
+  - name: &quot;Brasilia&quot;
+    latitude: -15.8267
+    longitude: -47.8711
+    region_code: &quot;DF&quot;
+    user_segment: &quot;metropolitan&quot;
+</code></pre>
+<p>Na próxima execução, a pipeline coleta dados para Brasília também.</p>
+<h3 id="p-onde-vejo-erros-se-alguma-coisa-der-errado">P: Onde vejo erros se alguma coisa der errado?</h3>
+<p><strong>R</strong>: 3 opções:</p>
+<ol>
+<li><strong>Airflow Web UI</strong> (recomendado):</li>
+<li>Clique na DAG → Task → Logs</li>
+<li>
+<p>Mostra exatamente o que deu erro</p>
+</li>
+<li>
+<p><strong>Docker logs</strong>:</p>
+</li>
+</ol>
+<pre><code class="language-bash">docker-compose logs -f airflow-scheduler
+</code></pre>
+<ol>
+<li><strong>BigQuery logs</strong> (se erro for na carga):</li>
+</ol>
+<pre><code class="language-bash">bq ls -j | head  # Últimos jobs
+bq show -j &lt;job_id&gt;  # Detalhes de um job
+</code></pre>
+<h3 id="p-posso-mudar-o-horario-de-execucao">P: Posso mudar o horário de execução?</h3>
+<p><strong>R</strong>: Sim. No <code>dags/weather_etl_dag.py</code>:</p>
+<pre><code class="language-python">schedule_interval=&quot;0 2 * * *&quot;  # Hora = 2 (02:00 UTC)
+
+# Exemplos:
+&quot;0 12 * * *&quot;     # Meio-dia (12:00 UTC)
+&quot;0 0 * * *&quot;      # Meia-noite (00:00 UTC)
+&quot;0 */6 * * *&quot;    # A cada 6 horas
+&quot;*/30 * * * *&quot;   # A cada 30 minutos
+</code></pre>
+<p>Reinicie:</p>
+<pre><code class="language-bash">docker-compose restart airflow-scheduler
+</code></pre>
+<h3 id="p-como-limpo-dados-ou-deleto-uma-execucao-errada">P: Como limpo dados ou deleto uma execução errada?</h3>
+<p><strong>R</strong>: Cuidado ao deletar — os dados Bronze são append-only (histórico).</p>
+<p>Para remover registros de um dia específico:</p>
+<pre><code class="language-bash">bq query --use_legacy_sql=false &quot;
+DELETE FROM \`seu-projeto.weather_bronze.weather_raw\`
+WHERE DATE(date) = '2024-05-18'
+&quot;
+</code></pre>
+<p>Ou recrie a tabela:</p>
+<pre><code class="language-bash"># Backup primeiro!
+bq cp seu-projeto:weather_bronze.weather_raw seu-projeto:weather_bronze.weather_raw_backup
+
+# Delete tabela
+bq rm seu-projeto:weather_bronze.weather_raw
+
+# Recrie (via script)
+python scripts/setup_bigquery.py
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="erro-no-module-named-googlecloud">Erro: "No module named 'google.cloud'"</h3>
+<p><strong>Causa</strong>: Dependências não instaladas</p>
+<p><strong>Solução</strong>:</p>
+<pre><code class="language-bash">pip install -r requirements-dev.txt
+# Ou apenas:
+pip install google-cloud-bigquery
+</code></pre>
+<h3 id="erro-permission-denied-ao-carregar-em-bigquery">Erro: "Permission denied" ao carregar em BigQuery</h3>
+<p><strong>Causa</strong>: Credenciais GCP não configuradas ou inválidas</p>
+<p><strong>Solução</strong>:</p>
+<ol>
+<li>Check <code>.env</code>:</li>
+</ol>
+<pre><code class="language-bash">cat .env | grep GCP_
+# Deve ter:
+# GCP_PROJECT_ID=seu-projeto
+# GCP_KEY_PATH=C:/gcp/gcp-key.json (ou /path/to/key.json)
+# GCP_REGION=US
+</code></pre>
+<ol>
+<li>Verifique arquivo de chave:</li>
+</ol>
+<pre><code class="language-bash">ls -la C:/gcp/gcp-key.json  # Deve existir
+</code></pre>
+<ol>
+<li>Teste credenciais:</li>
+</ol>
+<pre><code class="language-bash">python -c &quot;from google.oauth2 import service_account; sa = service_account.Credentials.from_service_account_file('C:/gcp/gcp-key.json'); print('OK')&quot;
+</code></pre>
+<ol>
+<li>Se usar Docker, verifique mount em <code>docker-compose.yml</code>:</li>
+</ol>
+<pre><code class="language-yaml">airflow-webserver:
+  environment:
+    - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/.config/gcp-key.json
+  volumes:
+    - C:/gcp/gcp-key.json:/opt/airflow/.config/gcp-key.json:ro
+</code></pre>
+<h3 id="erro-dataset-not-found-no-bigquery">Erro: "Dataset not found" no BigQuery</h3>
+<p><strong>Causa</strong>: Dataset não existe em BigQuery</p>
+<p><strong>Solução</strong>:</p>
+<p>Rode setup_bigquery.py:</p>
+<pre><code class="language-bash">python scripts/setup_bigquery.py
+</code></pre>
+<p>Ou crie manualmente:</p>
+<pre><code class="language-bash">bq mk --dataset seu-projeto:weather_bronze
+bq mk --dataset seu-projeto:weather_silver
+bq mk --dataset seu-projeto:weather_gold
+</code></pre>
+<h3 id="erro-provided-schema-does-not-match-table">Erro: "Provided Schema does not match Table"</h3>
+<p><strong>Causa</strong>: Colunas do DataFrame não coincidem com schema da tabela</p>
+<p><strong>Solução</strong>:</p>
+<ol>
+<li>Verifique schema esperado:</li>
+</ol>
+<pre><code class="language-bash">cat config/schema/bronze_schema.json
+</code></pre>
+<ol>
+<li>Rode teste local:</li>
+</ol>
+<pre><code class="language-python">from pipeline.loaders.bigquery_loader import BigQueryLoader
+loader = BigQueryLoader()
+try:
+    loader.validate_df_schema(df, &quot;weather_bronze&quot;, &quot;weather_raw&quot;)
+    print(&quot;OK&quot;)
+except ValueError as e:
+    print(f&quot;Erro: {e}&quot;)
+</code></pre>
+<ol>
+<li>Se adicionou coluna nova:</li>
+<li>Edite <code>config/schema/*.json</code></li>
+<li>Delete a tabela no BigQuery</li>
+<li>Recrie via <code>scripts/setup_bigquery.py</code></li>
+</ol>
+<h3 id="dag-nao-aparece-no-airflow-apos-editar-arquivo">DAG não aparece no Airflow após editar arquivo</h3>
+<p><strong>Causa</strong>: Scheduler não recarregou os DAGs</p>
+<p><strong>Solução</strong>:</p>
+<pre><code class="language-bash">docker-compose restart airflow-scheduler
+
+# Aguarde 30s, depois recarregue Airflow UI
+# http://localhost:8080
+</code></pre>
+<p>Ou force parse:</p>
+<pre><code class="language-bash">docker-compose exec airflow-webserver airflow dags list
+</code></pre>
+<h3 id="erro-failed-to-get-dag-weather_etl_dag">Erro: "FAILED to get DAG 'weather_etl_dag'"</h3>
+<p><strong>Causa</strong>: Syntax error no arquivo Python</p>
+<p><strong>Solução</strong>:</p>
+<p>Verifique sintaxe:</p>
+<pre><code class="language-bash">python -m py_compile dags/weather_etl_dag.py
+</code></pre>
+<p>Se houver erro, ele mostra linha. Corrija e reinicie:</p>
+<pre><code class="language-bash">docker-compose restart airflow-scheduler
+</code></pre>
+<h3 id="pipeline-roda-mas-nao-carrega-dados-em-bigquery">Pipeline roda mas não carrega dados em BigQuery</h3>
+<p><strong>Causa</strong>: Pode ser vários motivos</p>
+<p><strong>Debug passo a passo</strong>:</p>
+<ol>
+<li>Verifique logs:</li>
+</ol>
+<pre><code class="language-bash">docker-compose logs airflow-webserver | grep load_to_bigquery
+</code></pre>
+<ol>
+<li>Teste transform localmente:</li>
+</ol>
+<pre><code class="language-python">from pipeline.extractors.open_meteo import OpenMeteoClient
+from pipeline.transformers.weather_transformer import WeatherTransformer
+
+client = OpenMeteoClient()
+data = client.get_last_30_days(-23.5505, -46.6333)
+df, metrics = WeatherTransformer.clean_weather_data(data, &quot;Test&quot;, &quot;TS&quot;)
+print(f&quot;Rows: {len(df)}, Quality: {metrics}&quot;)
+</code></pre>
+<ol>
+<li>Teste load:</li>
+</ol>
+<pre><code class="language-python">from pipeline.loaders.bigquery_loader import BigQueryLoader
+loader = BigQueryLoader()
+loader.load_to_bronze(df, &quot;weather_raw&quot;, &quot;append&quot;)
+</code></pre>
+<ol>
+<li>Verifique dados em BigQuery:</li>
+</ol>
+<pre><code class="language-bash">bq query &quot;SELECT COUNT(*) as total FROM \`seu-projeto.weather_bronze.weather_raw\`&quot;
+</code></pre>
+<h3 id="performance-pipeline-esta-muito-lenta">Performance: Pipeline está muito lenta</h3>
+<p><strong>Possíveis causas</strong>:</p>
+<ol>
+<li><strong>API lenta</strong>: Open-Meteo pode estar congestionada</li>
+<li>
+<p>Solução: rodar em horário de menor carga</p>
+</li>
+<li>
+<p><strong>BigQuery lento</strong>: Carga está processando muitos dados</p>
+</li>
+<li>
+<p>Solução: reduzir para 7 dias em vez de 30 (se possível)</p>
+</li>
+<li>
+<p><strong>Transformer lento</strong>: Processamento de dados está pesado</p>
+</li>
+<li>
+<p>Solução: usar <code>df.sample()</code> para debug, depois rodar em batch</p>
+</li>
+<li>
+<p><strong>Airflow lento</strong>: Container sem recursos suficientes</p>
+</li>
+<li>Solução: aumentar CPU/RAM em <code>docker-compose.yml</code></li>
+</ol>
+<h2 id="checklist-de-saude-diaria">Checklist de Saúde Diária</h2>
+<p>Antes de confiar na pipeline:</p>
+<pre><code class="language-bash"># 1. Verificar se Airflow e Postgres estão rodando
+docker-compose ps
+
+# 2. Verifique última execução
+docker-compose logs airflow-scheduler | tail -20
+
+# 3. Verifique dados carregados ontem
+bq query --use_legacy_sql=false &quot;
+  SELECT DATE(load_timestamp) as load_date, COUNT(*) as rows
+  FROM \`seu-projeto.weather_bronze.weather_raw\`
+  GROUP BY DATE(load_timestamp)
+  ORDER BY load_date DESC
+  LIMIT 5
+&quot;
+
+# 4. Verifique quality_score (se houver dados em Silver)
+bq query --use_legacy_sql=false &quot;
+  SELECT AVG(data_quality_score) as avg_quality
+  FROM \`seu-projeto.weather_silver.weather_cleaned\`
+  WHERE DATE(aggregation_timestamp) = CURRENT_DATE()
+&quot;
+
+# 5. Verifique se há alertas de erro
+docker-compose exec airflow-webserver airflow dags list --report
+</code></pre>
+<p>Se tudo está verde, a pipeline está saudável! ✅</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

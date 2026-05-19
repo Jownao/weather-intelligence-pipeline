@@ -1,0 +1,900 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Arquitetura Técnica — Como os Componentes Funcionam - Weather Intelligence Pipeline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arquitetura-tecnica-como-os-componentes-funcionam" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Weather Intelligence Pipeline" class="md-header__button md-logo" aria-label="Weather Intelligence Pipeline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Weather Intelligence Pipeline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arquitetura Técnica — Como os Componentes Funcionam
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Weather Intelligence Pipeline" class="md-nav__button md-logo" aria-label="Weather Intelligence Pipeline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Weather Intelligence Pipeline
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Serve Locally
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados-visualizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de Dados (Visualizado)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detalhamento-de-cada-componente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detalhamento de Cada Componente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detalhamento de Cada Componente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-openmeteoclient-pipelineextractorsopen_meteopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. OpenMeteoClient (pipeline/extractors/open_meteo.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-weathertransformer-pipelinetransformersweather_transformerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. WeatherTransformer (pipeline/transformers/weather_transformer.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-bigqueryloader-pipelineloadersbigquery_loaderpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. BigQueryLoader (pipeline/loaders/bigquery_loader.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dag-principal-dagsweather_etl_dagpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. DAG Principal (dags/weather_etl_dag.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados-hora-a-hora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de Dados Hora-a-Hora
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluxo de Dados Hora-a-Hora">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0200-utc-inicio-da-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02:00 UTC (início da execução)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0200-utc-ate-0205-extracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02:00 UTC até 02:05 (extração)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0205-ate-0210-transformacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02:05 até 02:10 (transformação)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0210-ate-0215-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02:10 até 02:15 (carga)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0215-em-diante-pos-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02:15 em diante (pós-execução)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#particionamento-e-retencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Particionamento e Retenção
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Particionamento e Retenção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bronze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bronze
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#silver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Silver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gold
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-debugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como Debugar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Como Debugar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ver-logs-da-dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ver logs da DAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testar-transform-localmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testar transform localmente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validar-schema-antes-de-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar schema antes de load
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximas-arquiteturas-possiveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximas Arquiteturas Possíveis
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="arquitetura-tecnica-como-os-componentes-funcionam">Arquitetura Técnica — Como os Componentes Funcionam</h1>
+<p>Este documento explica o fluxo técnico de ponta a ponta e como cada componente se comunica.</p>
+<h2 id="fluxo-de-dados-visualizado">Fluxo de Dados (Visualizado)</h2>
+<pre><code>┌──────────────────────┐
+│  Open-Meteo API      │  (Dados climáticos públicos)
+│  get_historical_...  │
+└──────────┬───────────┘
+           │ JSON payload
+           ▼
+┌──────────────────────────────────────────────┐
+│  Airflow DAG: weather_etl_daily              │
+│  ┌─────────────────────────────────────────┐ │
+│  │ Task 1: extract_weather_data            │ │
+│  │ - Chama OpenMeteoClient                 │ │
+│  │ - Busca últimos 30 dias                 │ │
+│  │ - Retorna lista de dicts (JSON)         │ │
+│  │ - Pusha para XCom (exchange entre tasks)│ │
+│  └─────────────────────────────────────────┘ │
+│         │ XCom: raw data
+│         ▼
+│  ┌─────────────────────────────────────────┐ │
+│  │ Task 2: transform_weather_data          │ │
+│  │ - Pega dados do XCom                    │ │
+│  │ - Converte para DataFrame pandas        │ │
+│  │ - Limpa, valida, calcula quality_score │ │
+│  │ - Retorna DF normalizado (Records)      │ │
+│  │ - Pusha para XCom (JSON-safe)           │ │
+│  └─────────────────────────────────────────┘ │
+│         │ XCom: clean records
+│         ▼
+│  ┌─────────────────────────────────────────┐ │
+│  │ Task 3: load_to_bigquery                │ │
+│  │ - Pega DataFrame limpo                  │ │
+│  │ - Valida schema (REQUIRED cols, types)  │ │
+│  │ - Load para weather_bronze.weather_raw  │ │
+│  │ - Parte-se o DF por schema columns      │ │
+│  └─────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+           │
+           ▼
+┌──────────────────────────────────────────────┐
+│  Google BigQuery                             │
+│  ┌──────────────────┐                       │
+│  │ BRONZE Layer     │  (raw, imutável)      │
+│  │ weather_bronze.  │                       │
+│  │   weather_raw    │  ← Dados carregados   │
+│  └──────────────────┘                       │
+│  ┌──────────────────┐                       │
+│  │ SILVER Layer     │  (limpo, via SQL)     │
+│  │ weather_silver.  │                       │
+│  │   weather_...    │  ← Transformações SQL │
+│  └──────────────────┘                       │
+│  ┌──────────────────┐                       │
+│  │ GOLD Layer       │  (agregado, pronto BI)│
+│  │ weather_gold.    │                       │
+│  │   aggregates     │  ← Métricas finais    │
+│  └──────────────────┘                       │
+└──────────────────────────────────────────────┘
+</code></pre>
+<h2 id="detalhamento-de-cada-componente">Detalhamento de Cada Componente</h2>
+<h3 id="1-openmeteoclient-pipelineextractorsopen_meteopy">1. OpenMeteoClient (<code>pipeline/extractors/open_meteo.py</code>)</h3>
+<p><strong>O que faz</strong>: Busca dados da Open-Meteo API</p>
+<p><strong>Métodos principais</strong>:</p>
+<pre><code class="language-python">client = OpenMeteoClient()
+
+# Buscar últimos 30 dias (histórico)
+data = client.get_last_30_days(
+    latitude=-23.5505, 
+    longitude=-46.6333
+)
+# Retorna: Lista de dicts com chaves como 'date', 'temperature_2m', etc.
+
+# Buscar previsão (forecast)
+forecast = client.get_forecast(latitude, longitude)
+</code></pre>
+<p><strong>Características</strong>:
+- Retry automático (se API falhar, tenta de novo)
+- Timeout de 10s por requisição
+- Retorna JSON estruturado direto da API</p>
+<h3 id="2-weathertransformer-pipelinetransformersweather_transformerpy">2. WeatherTransformer (<code>pipeline/transformers/weather_transformer.py</code>)</h3>
+<p><strong>O que faz</strong>: Limpa e padroniza dados</p>
+<p><strong>Fluxo</strong>:</p>
+<pre><code class="language-python">from pipeline.transformers.weather_transformer import WeatherTransformer
+
+# Input: lista bruta da API
+raw_data = [
+    {&quot;date&quot;: &quot;2024-01-01&quot;, &quot;temperature_2m&quot;: 25.5, ...},
+    {&quot;date&quot;: &quot;2024-01-02&quot;, &quot;temperature_2m&quot;: 26.0, ...},
+]
+
+# Transform
+df, metrics = WeatherTransformer.clean_weather_data(raw_data)
+# df = DataFrame limpo com colunas padronizadas
+# metrics = dict com estatísticas (ex: &quot;rows_removed&quot;: 2, &quot;quality_score&quot;: 92.5)
+</code></pre>
+<p><strong>Operações de limpeza</strong>:
+1. Remove valores faltantes
+2. Remove outliers (ex: temperatura &gt; 60°C)
+3. Calcula quality_score por linha (0-100)
+4. Categoriza condição climática (sunny, rainy, cloudy, etc.)</p>
+<p><strong>Output</strong>: DataFrame com colunas:
+- <code>date</code>, <code>region_name</code>, <code>latitude</code>, <code>longitude</code>
+- <code>temperature_2m</code>, <code>humidity_2m</code>, <code>precipitation_sum</code>, <code>windspeed_10m</code>, <code>cloudcover</code>
+- <code>weather_condition</code>, <code>data_quality_score</code>, <code>is_valid</code></p>
+<h3 id="3-bigqueryloader-pipelineloadersbigquery_loaderpy">3. BigQueryLoader (<code>pipeline/loaders/bigquery_loader.py</code>)</h3>
+<p><strong>O que faz</strong>: Escreve dados em camadas diferentes do BigQuery</p>
+<p><strong>Métodos principais</strong>:</p>
+<pre><code class="language-python">loader = BigQueryLoader(
+    project_id=&quot;seu-projeto&quot;,
+    dataset_bronze=&quot;weather_bronze&quot;,
+    dataset_silver=&quot;weather_silver&quot;,
+    dataset_gold=&quot;weather_gold&quot;
+)
+
+# Load para Bronze (raw)
+loader.load_to_bronze(df, table_name=&quot;weather_raw&quot;)
+
+# Load para Silver (já limpo)
+loader.load_to_silver(df, table_name=&quot;weather_cleaned&quot;)
+
+# Load para Gold (agregado)
+loader.load_to_gold(df, table_name=&quot;weather_aggregates&quot;)
+</code></pre>
+<p><strong>Validações</strong>:
+- Valida schema antes do load (checa colunas REQUIRED)
+- Converte tipos (STRING → TIMESTAMP, INT64, FLOAT64)
+- Cria dataset se não existir
+- Particiona por data (<code>date</code> ou <code>metric_date</code>)</p>
+<p><strong>Schemas</strong> (em <code>config/schema/*.json</code>):</p>
+<pre><code class="language-json">{
+  &quot;fields&quot;: [
+    {&quot;name&quot;: &quot;date&quot;, &quot;type&quot;: &quot;DATE&quot;, &quot;mode&quot;: &quot;REQUIRED&quot;},
+    {&quot;name&quot;: &quot;temperature_2m&quot;, &quot;type&quot;: &quot;FLOAT64&quot;, &quot;mode&quot;: &quot;NULLABLE&quot;},
+    ...
+  ]
+}
+</code></pre>
+<h3 id="4-dag-principal-dagsweather_etl_dagpy">4. DAG Principal (<code>dags/weather_etl_dag.py</code>)</h3>
+<p><strong>O que é</strong>: Orquestração das tasks via Airflow</p>
+<p><strong>Estrutura</strong>:</p>
+<pre><code class="language-python">dag = DAG(
+    'weather_etl_daily',
+    schedule_interval='0 2 * * *',  # Diariamente às 02:00 UTC
+    default_args={
+        'retries': 2,
+        'retry_delay': timedelta(minutes=5),
+    }
+)
+
+# Task 1: Extract
+extract_task = PythonOperator(
+    task_id='extract_weather_data',
+    python_callable=extract_weather_data,  # Chama função
+    op_kwargs={'regions': load_regions_yaml()}  # Passa regiões
+)
+
+# Task 2: Transform (depende de Task 1)
+transform_task = PythonOperator(
+    task_id='transform_weather_data',
+    python_callable=transform_weather_data,
+)
+
+# Task 3: Load (depende de Task 2)
+load_task = PythonOperator(
+    task_id='load_to_bigquery',
+    python_callable=load_to_bigquery,
+)
+
+# Dependências
+extract_task &gt;&gt; transform_task &gt;&gt; load_task
+</code></pre>
+<p><strong>XCom (comunicação entre tasks)</strong>:
+- Task 1 pusha resultado para XCom com chave "weather_data"
+- Task 2 puxa de XCom, processa, pusha "transformed_data"
+- Task 3 puxa e carrega em BigQuery</p>
+<p><strong>Exemplo de XCom</strong>:</p>
+<pre><code class="language-python"># Task 1: push
+ti.xcom_push(key=&quot;weather_data&quot;, value=extracted_list)
+
+# Task 2: pull
+extracted_data = ti.xcom_pull(task_ids=&quot;extract_weather_data&quot;, key=&quot;weather_data&quot;)
+</code></pre>
+<h2 id="fluxo-de-dados-hora-a-hora">Fluxo de Dados Hora-a-Hora</h2>
+<h3 id="0200-utc-inicio-da-execucao">02:00 UTC (início da execução)</h3>
+<ol>
+<li>Airflow scheduler acorda</li>
+<li>Dispara DAG <code>weather_etl_daily</code></li>
+<li>Task 1 começa</li>
+</ol>
+<h3 id="0200-utc-ate-0205-extracao">02:00 UTC até 02:05 (extração)</h3>
+<ul>
+<li>OpenMeteoClient busca 30 dias para cada região em <code>config/regions.yaml</code></li>
+<li>Resultado (lista de dicts) é pushed para XCom</li>
+<li>Exemplo: 31 dias × 3 regiões = 93 registros</li>
+</ul>
+<h3 id="0205-ate-0210-transformacao">02:05 até 02:10 (transformação)</h3>
+<ul>
+<li>Transformer pega XCom</li>
+<li>Converte para DataFrame</li>
+<li>Limpa (remove NaNs, outliers)</li>
+<li>Calcula quality_score</li>
+<li>Pusha DataFrame limpo para XCom</li>
+</ul>
+<h3 id="0210-ate-0215-carga">02:10 até 02:15 (carga)</h3>
+<ul>
+<li>Loader pega DataFrame</li>
+<li>Valida schema (checa REQUIRED columns)</li>
+<li>Escreve 93 linhas em <code>weather_bronze.weather_raw</code></li>
+<li>BigQuery partição automática por <code>date</code></li>
+</ul>
+<h3 id="0215-em-diante-pos-execucao">02:15 em diante (pós-execução)</h3>
+<ul>
+<li>DAG marca-se como SUCCESS no Airflow</li>
+<li>Dados pronto em BigQuery para consultas</li>
+<li>Próxima execução: amanhã às 02:00 UTC</li>
+</ul>
+<h2 id="particionamento-e-retencao">Particionamento e Retenção</h2>
+<h3 id="bronze">Bronze</h3>
+<ul>
+<li>Particionado por <code>date</code></li>
+<li>Retenção: 1 ano (365 dias)</li>
+<li>Tamanho estimado: ~100MB/ano para 3 regiões</li>
+</ul>
+<h3 id="silver">Silver</h3>
+<ul>
+<li>Limpo + enriquecido</li>
+<li>Particionado por <code>date</code></li>
+<li>Retenção: 2 anos</li>
+</ul>
+<h3 id="gold">Gold</h3>
+<ul>
+<li>Agregado por <code>region_name</code> + <code>metric_date</code></li>
+<li>Particionado por <code>metric_date</code></li>
+<li>Retenção: 5 anos (para histórico analítico)</li>
+</ul>
+<h2 id="como-debugar">Como Debugar</h2>
+<h3 id="ver-logs-da-dag">Ver logs da DAG</h3>
+<pre><code class="language-bash"># Logs em tempo real
+docker-compose logs -f airflow-scheduler
+
+# Logs de uma task específica
+docker-compose logs airflow-webserver | grep extract_weather
+</code></pre>
+<h3 id="testar-transform-localmente">Testar transform localmente</h3>
+<pre><code class="language-python">from pipeline.transformers.weather_transformer import WeatherTransformer
+import pandas as pd
+
+# Dados fake
+df = pd.DataFrame({
+    'date': ['2024-01-01', '2024-01-02'],
+    'temperature_2m': [25.0, 26.0],
+    'humidity_2m': [60, 65],
+})
+
+df_clean, metrics = WeatherTransformer.clean_weather_data(df)
+print(f&quot;Rows removed: {metrics['rows_removed']}&quot;)
+print(f&quot;Quality score: {df_clean['data_quality_score'].mean()}&quot;)
+</code></pre>
+<h3 id="validar-schema-antes-de-load">Validar schema antes de load</h3>
+<pre><code class="language-python">from pipeline.loaders.bigquery_loader import BigQueryLoader
+
+loader = BigQueryLoader()
+try:
+    loader.validate_df_schema(df, &quot;weather_bronze&quot;, &quot;weather_raw&quot;)
+    print(&quot;Schema OK!&quot;)
+except ValueError as e:
+    print(f&quot;Schema error: {e}&quot;)
+</code></pre>
+<h2 id="proximas-arquiteturas-possiveis">Próximas Arquiteturas Possíveis</h2>
+<p>Se crescer para produção:</p>
+<ol>
+<li><strong>Cloud Composer</strong> (Airflow gerenciado no GCP)</li>
+<li><strong>Pub/Sub</strong> para queueing assíncrono</li>
+<li><strong>Cloud Functions</strong> para transformações em tempo real</li>
+<li><strong>Looker</strong> para BI integrado ao BigQuery</li>
+<li><strong>dbt</strong> para transformações Silver/Gold em SQL</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
